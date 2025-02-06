@@ -57,8 +57,12 @@ builder.Services.AddAuthentication(options =>
 .AddOpenIdConnect("Google", options =>
 {
     options.Authority = "https://accounts.google.com";
-    options.ClientId = builder.Configuration["Authentication-Google-ClientId"];
-    options.ClientSecret = builder.Configuration["Authentication-Google-ClientSecret"];
+    //options.ClientId = builder.Configuration["Authentication-Google-ClientId"];
+    //options.ClientSecret = builder.Configuration["Authentication-Google-ClientSecret"];
+    options.ClientId = Environment.GetEnvironmentVariable("Authentication-Google-ClientId");
+    options.ClientSecret = Environment.GetEnvironmentVariable("Authentication-Google-ClientSecret");
+
+
     options.ResponseType = OpenIdConnectResponseType.Code;
     options.CallbackPath = "/signin-oidc-google";
     options.Scope.Add("openid");
