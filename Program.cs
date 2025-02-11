@@ -60,10 +60,11 @@ builder.Services.AddAuthentication(options =>
     //options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
     //options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
 
-    //Hej arton
+    options.ClientId = Environment.GetEnvironmentVariable("Authentication:Google:ClientId");
+    options.ClientSecret = Environment.GetEnvironmentVariable("Authentication:Google:ClientSecret");
 
-    options.ClientId = Environment.GetEnvironmentVariable("Authentication__Google__ClientId");
-    options.ClientSecret = Environment.GetEnvironmentVariable("Authentication__Google__ClientSecret");
+    //options.ClientId = Environment.GetEnvironmentVariable("Authentication__Google__ClientId");
+    //options.ClientSecret = Environment.GetEnvironmentVariable("Authentication__Google__ClientSecret");
 
     options.ResponseType = OpenIdConnectResponseType.Code;
     options.CallbackPath = "/signin-oidc-google";
